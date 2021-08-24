@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <link rel="stylesheet" href="../../static/vendors/fontsawesome/css/all.min.css">
+
+    <link rel="stylesheet" href="../../static/vendors/bootstrap/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../../static/css/style.css">
+
+
+    <!-- importing all the javascript -->
+    <script src="../../static/vendors/bootstrap/bootstrap.bundle.min.js" defer></script>
+
+    <script src="../../static/vendors/Gsap/gsap.min.js" defer></script>
+    <script src="../../static/vendors/Gsap/ScrollToPlugin.min.js" defer></script>
+    <script src="../../static/vendors/Gsap/ScrollTrigger.min.js" defer></script>
+
+    <script src="../../static/js/app.js" defer></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-transparent py-3">
+        <div class="container">
+            <a class="navbar-brand text-uppercase fw-bold text-brand" href="#">Pizza</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="products.html">Menu</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row align-items-center">
+                        <div class="col-md-3">
+                            <img src="../../static/images/5.png" class="img-fluid" alt="">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="pizza-cart-detail">
+                                <h3>
+                                    Cheese pizza
+                                </h3>
+                                <p class="mb-0 text-muted">Medium</p>
+                                <p class="mb-0 text-muted">Extra Cheese</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="pizza-cart-quantity d-flex">
+                                <button class="btn btn-outline-dark">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="text" class="form-control form-control-sm" value="1">
+                                <button class="btn btn-outline-dark">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mt-5 mt-md-0 px-2 py-2">
+                    <div class="w-100 bg-white shadow px-3 py-5 px-md-5">
+                        <h5 class="d-flex justify-content-between mb-3">
+                            <span>Sub. Total:</span>
+                            <span>$5.50</span>
+                        </h5>
+                        <button class="button button-secondary w-100 mt-5">
+                            Pay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Pizza</h2>
+                    <p>Made By <a href="https://github.com/Dakshesh14" class="fancy-link">Dakshesh Jain</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
