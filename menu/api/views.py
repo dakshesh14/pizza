@@ -1,6 +1,5 @@
 # django imports
 
-
 # rest_framework imports
 from rest_framework import generics
 from rest_framework.views import APIView
@@ -41,7 +40,10 @@ class AllPizzaAPI(generics.ListAPIView):
     ]
 
     def get_queryset(self):
-        q = self.request.GET.get("q")
-        if q:
+        q = self.request.GET.get("query")
+        if q and q == 'veg':
             return MenuItem.objects.filter(pizza_type='V')
+        elif q == 'non-veg':
+            return MenuItem.objects.filter(pizza_type='NV')
+
         return MenuItem.objects.all()

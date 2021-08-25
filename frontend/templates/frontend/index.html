@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizza</title>
+
+    <!-- importing all css -->
+    <link rel="stylesheet" href="{% static 'vendors/fontsawesome/css/all.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'vendors/bootstrap/all.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+    <!-- importing all js -->
+    <script src="{% static 'vendors/Gsap/gsap.min.js' %}" defer></script>
+    <script src="{% static 'vendors/Gsap/ScrollToPlugin.min.js' %}" defer></script>
+    <script src="{% static 'vendors/Gsap/ScrollTrigger.min.js' %}" defer></script>
+
+</head>
+
+<body>
+
+    <div id="root"></div>
+
+    <script src="{% static 'frontend/main.js' %}"></script>
+
+</body>
+
+</html>
