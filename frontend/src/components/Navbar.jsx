@@ -8,21 +8,23 @@ import {
     NavLink,
 } from 'react-router-dom';
 
-export default memo(function Navbar() {
 
-    let navbar = useRef(null);
+// importing store related stuff
+import { connect } from 'react-redux';
+
+function Navbar({ cartTotal }) {
 
     useEffect(() => {
         function fixedNavbar() {
-            navbar.classList.toggle('active', window.scrollY > 0)
+            document.querySelector('.navbar').classList.toggle('active', window.scrollY > 0)
         }
         document.addEventListener('scroll', () => {
             fixedNavbar();
         });
-    }, [])
+    }, [cartTotal,])
 
     return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-3" ref={el => navbar = el}>
+        <nav className="navbar navbar-expand-lg navbar-light bg-transparent py-3">
             <div className="container">
                 <NavLink className="navbar-brand text-uppercase fw-bold text-brand" to="/">Pizza</NavLink>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -40,7 +42,7 @@ export default memo(function Navbar() {
                         <li className="nav-item">
                             <NavLink to="/my-cart" activeClassName="active" exact className="nav-link position-relative">
                                 <i className="fas fa-shopping-cart"></i>
-                                <span className="ms-1">5</span>
+                                <span className="ms-1">{cartTotal}</span>
                             </NavLink>
                         </li>
                     </ul>
@@ -48,4 +50,14 @@ export default memo(function Navbar() {
             </div>
         </nav>
     )
-})
+}
+
+
+const mapStateToProps = (state) => ({
+    cartTotal: state.totalItem,
+});
+
+export default connect(
+    mapStateToProps,
+    null,
+)(memo(Navbar));

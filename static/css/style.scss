@@ -81,3 +81,8 @@
         color: $overlay-color;
     }
 }
+
+// styling pizza listing page
+.pizza-listing {
+    min-height: 35rem; // to avoid sudden heigh change in new items render
+}

@@ -6,7 +6,12 @@ from menu.models import (
 )
 
 
-class ListMenuItemSerializer(serializers.ModelSerializer):
+class MenuItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = MenuItem
         fields = '__all__'
+
+# class MenuItemDetail(serializers.ModelSerializer):
+#     class Meta:
+#         model = MenuItem
+#         fields = '__all__'

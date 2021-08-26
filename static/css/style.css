@@ -1,8 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&display=swap");
-.card {
-  width: 20rem;
-}
-
 .card .card-img-container {
   width: 100%;
   height: auto;
@@ -354,5 +350,9 @@ footer a.fancy-link::after {
 
 .parallax .button {
   color: #fff;
+}
+
+.pizza-listing {
+  min-height: 35rem;
 }
 /*# sourceMappingURL=style.css.map */

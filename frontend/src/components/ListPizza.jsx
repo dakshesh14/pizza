@@ -1,11 +1,16 @@
-import React, { memo } from 'react'
+import React, { memo } from 'react';
 
-export default memo(function ListPizza({ items }) {
+// importing store related stuff
+import { connect } from 'react-redux';
+import { addItemToCart, deleteItemFromCart } from '../store/cart/action';
+
+
+function ListPizza({ items, cartItem, addItemToCart, deleteItemFromCart }) {
 
     return (
-        <div className="d-flex flex-wrap justify-content-between">
+        <div className="d-flex flex-wrap justify-content-evenly">
             {items.pizzas.map(pizza => (
-                <div className="card border-0 shadow rounded m-2" key={pizza.id}>
+                <div className="card col-3 m-3 border-0 shadow rounded" key={pizza.id}>
                     <div className="card-img-container">
                         <div className="pizza-type veg"></div>
                         <img src={pizza.image} className="card-img-top" alt="pizza" />
@@ -34,11 +39,29 @@ export default memo(function ListPizza({ items }) {
                                     <option value="american">American</option>
                                 </select>
                             </div>
-                            <button className="btn btn-outline-primary d-flex ms-auto">Add To Cart</button>
+                            <button type="button" className="btn btn-outline-primary d-flex ms-auto" onClick={() => {
+                                addItemToCart(pizza.id)
+                            }}>Add To Cart</button>
                         </form>
                     </div>
                 </div>
             ))}
         </div>
     )
+}
+
+
+
+const mapStateToProps = (state) => ({
+    cartItem: state,
 })
+
+const mapDispatchToProps = {
+    addItemToCart: (itemId) => addItemToCart(itemId),
+    deleteItemFromCart: (itemId) => deleteItemFromCart(itemId),
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps,
+)(memo(ListPizza))

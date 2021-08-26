@@ -19,7 +19,7 @@ from rest_framework.filters import (
 
 # importing serializers
 from .serializers import (
-    ListMenuItemSerializer,
+    MenuItemSerializer,
 )
 
 # importing model
@@ -30,7 +30,7 @@ from menu.models import (
 
 class AllPizzaAPI(generics.ListAPIView):
     queryset = MenuItem.objects.all()
-    serializer_class = ListMenuItemSerializer
+    serializer_class = MenuItemSerializer
     filter_backends = [SearchFilter, OrderingFilter]
     search_fields = [
         'name',
@@ -47,3 +47,9 @@ class AllPizzaAPI(generics.ListAPIView):
             return MenuItem.objects.filter(pizza_type='NV')
 
         return MenuItem.objects.all()
+
+
+
+class PizzaDetailAPI(generics.RetrieveAPIView):
+    queryset = MenuItem.objects.all()
+    serializer_class = MenuItemSerializer

@@ -3,16 +3,16 @@ import React, {
     useState,
 } from 'react';
 
+
 // importing action
 import useFetchPizza from '../actions/useFetchPizza';
+
 
 // importing components
 import Spinner from './Spinner';
 import ListPizza from './ListPizza';
 
 function Menu() {
-    // search: search,
-    // query: query,
 
     const [inputSearch, setInputSearch] = useState('');
     const [finalSearch, setFinalSearch] = useState('');
@@ -35,11 +35,7 @@ function Menu() {
 
     useEffect(() => {
         window.scrollTo(0, 0);
-    }, [])
-
-    // if (loading) {
-    //     return <h1>Loading...</h1>
-    // }
+    }, []);
 
     return (
         <section className="products mt-5">
@@ -102,7 +98,7 @@ function Menu() {
                             </div>
                         </form>
                     </div>
-                    <div className="col-12 mt-5">
+                    <div className="pizza-listing col-12 mt-5">
                         <h2>Pizzas</h2>
                         {
                             loading
@@ -123,4 +119,5 @@ function Menu() {
     )
 }
 
-export default Menu
+
+export default Menu;
