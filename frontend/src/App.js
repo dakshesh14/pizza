@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
 } from 'react-router-dom';
 
-// importing store related stuff
-import { Provider } from 'react-redux';
 
-import store from './store/store';
+// importing redux related stuff
+import { connect } from 'react-redux';
+import { checkOldItems } from './store/cart/action'
 
 // importing components
 import Home from './components/Home';
@@ -19,20 +19,31 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 
-function App() {
+function App({ checkOldItems }) {
+
+    useEffect(() => {
+        checkOldItems();
+    }, [])
+
     return (
-        <Provider store={store}>
-            <Router>
-                <Navbar />
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route exact path="/menu" component={Menu} />
-                    <Route exact path="/my-cart" component={UserCart} />
-                </Switch>
-                <Footer />
-            </Router>
-        </Provider>
+        <Router>
+            <Navbar />
+            <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/menu" component={Menu} />
+                <Route exact path="/my-cart" component={UserCart} />
+            </Switch>
+            <Footer />
+        </Router>
     )
 }
 
-export default App
+const mapDispatchToProps = {
+    checkOldItems: () => checkOldItems(),
+}
+
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(App);

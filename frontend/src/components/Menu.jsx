@@ -103,7 +103,9 @@ function Menu() {
                         {
                             loading
                                 ?
-                                <Spinner />
+                                <div className="h-100 d-flex align-items-center">
+                                    <Spinner />
+                                </div>
                                 :
                                 <>
                                     <p className="text-muted">

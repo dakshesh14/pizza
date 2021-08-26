@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addItemToCart, deleteItemFromCart } from '../store/cart/action';
 
 
-function ListPizza({ items, cartItem, addItemToCart, deleteItemFromCart }) {
+function ListPizza({ items, addItemToCart }) {
 
     return (
         <div className="d-flex flex-wrap justify-content-evenly">

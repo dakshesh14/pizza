@@ -7,11 +7,15 @@ from menu.models import (
 
 
 class MenuItemSerializer(serializers.ModelSerializer):
+
+    quantity = serializers.IntegerField(default=1)
+
     class Meta:
         model = MenuItem
-        fields = '__all__'
-
-# class MenuItemDetail(serializers.ModelSerializer):
-#     class Meta:
-#         model = MenuItem
-#         fields = '__all__'
+        fields = (
+            'id',
+            'name',
+            'price',
+            'image',
+            'quantity',
+        )
