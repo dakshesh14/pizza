@@ -63,7 +63,7 @@ function UserCart({ cartItems, deleteItemFromCart, increaseItem, decreaseItem })
                         <div className="w-100 bg-white shadow px-3 py-5 px-md-5">
                             <h5 className="d-flex justify-content-between mb-3">
                                 <span>Sub. Total:</span>
-                                <span>$5.50</span>
+                                <span>${cartItems.totalPrice}</span>
                             </h5>
                             <button className="button button-secondary w-100 mt-5">
                                 Pay

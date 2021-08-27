@@ -24,11 +24,12 @@ export const addItemToCart = (itemId) => {
             let newItem = res.data;
             Swal.fire("Item added to cart", newItem.name + ' has been added to your cart', 'success');
             dispatch(addItemToCartSuccess(newItem));
-        }).catch(err => {
-            const { detail } = err.response.data;
-            Swal.fire("Error", detail, 'error');
-            dispatch(addItemToCartFail(detail));
         })
+        // .catch(err => {
+        //     const { detail } = err.response.data;
+        //     Swal.fire("Error", detail, 'error');
+        //     dispatch(addItemToCartFail(detail));
+        // })
     }
 }
 

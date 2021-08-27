@@ -11,12 +11,19 @@ import {
 const initialState = {
     loading: false,
     totalItem: 0,
+    totalPrice: 0,
     error: null,
     items: [],
 }
 
+// importing utility functions
+import {
+    calcTotalPrice,
+    addToLocalStorage
+} from './utility';
 
 const reducer = (state = initialState, action) => {
+
     switch (action.type) {
 
         case CHECK_OLD_ITEMS:
@@ -24,11 +31,7 @@ const reducer = (state = initialState, action) => {
             oldItem = JSON.parse(oldItem);
             if (!oldItem) return state
 
-            return {
-                ...state,
-                totalItem: oldItem.length,
-                items: oldItem,
-            }
+            return oldItem
 
         case ADD_ITEM_TO_CART_START:
             return {
@@ -37,17 +40,19 @@ const reducer = (state = initialState, action) => {
             }
 
         case ADD_ITEM_TO_CART_SUCCESS:
-            if (!state.items.some(item => item.id === action.payload.id)) {
-                // saving items in localStorage
-                const dataString = JSON.stringify([...state.items, action.payload]);
-                localStorage.setItem('cart', dataString);
-
-                return {
-                    ...state,
-                    error: null,
-                    loading: false,
-                    totalItem: state.items.length + 1,
-                    items: [...state.items, action.payload],
+            {
+                if (!state.items.some(item => item.id === action.payload.id)) {
+                    const newItemArray = [...state.items, action.payload];
+                    const newState = {
+                        ...state,
+                        error: null,
+                        loading: false,
+                        totalItem: newItemArray.length,
+                        items: newItemArray,
+                        totalPrice: calcTotalPrice(newItemArray),
+                    }
+                    addToLocalStorage(newState);
+                    return newState
                 }
             }
 
@@ -58,38 +63,52 @@ const reducer = (state = initialState, action) => {
             }
 
         case DELETE_ITEM_FROM_CART:
+            {
 
-            // first filter and find item, than delete it and set new localStorage
-            let itemCopy = state.items.slice();
-            itemCopy.splice(itemCopy.findIndex(item => item.id === action.payload), 1);
-            localStorage.setItem('cart', JSON.stringify(itemCopy));
+                // first filter and find item, than delete it and set new localStorage
+                let itemCopy = [...state.items]
+                itemCopy.splice(itemCopy.findIndex(item => item.id === action.payload), 1);
 
-            return {
-                ...state,
-                items: itemCopy,
-                totalItem: itemCopy.length,
+                const newState = {
+                    ...state,
+                    items: itemCopy,
+                    totalItem: itemCopy.length,
+                    totalPrice: calcTotalPrice(itemCopy),
+                }
+                addToLocalStorage(newState);
+
+                return newState
             }
 
         case INCREMENT_ITEM:
-            let incCopy = [...state.items]
-            let index = incCopy.findIndex(item => item.id === action.payload);
-            incCopy[index] = {...incCopy[index], quantity: incCopy[index].quantity += 1 };
-            localStorage.setItem('cart', JSON.stringify(incCopy));
+            {
+                let itemCopy = [...state.items]
+                let index = itemCopy.findIndex(item => item.id === action.payload);
+                itemCopy[index] = {...itemCopy[index], quantity: itemCopy[index].quantity += 1 };
+                const newState = {
+                    ...state,
+                    items: itemCopy,
+                    totalPrice: calcTotalPrice(itemCopy),
+                }
+                addToLocalStorage(newState);
 
-            return {
-                ...state,
-                items: incCopy,
+                return newState
             }
 
         case DECREMENT_ITEM:
-            let decCopy = [...state.items]
-            let decIndex = decCopy.findIndex(item => item.id === action.payload);
-            decCopy[index] = {...decCopy[decIndex], quantity: decCopy[decIndex].quantity -= 1 };
-            localStorage.setItem('cart', JSON.stringify(decCopy));
+            {
+                let itemCopy = [...state.items]
+                let index = itemCopy.findIndex(item => item.id === action.payload);
+                itemCopy[index] = {...itemCopy[index], quantity: itemCopy[index].quantity -= 1 };
 
-            return {
-                ...state,
-                items: decCopy,
+                const newState = {
+                    ...state,
+                    items: itemCopy,
+                    totalPrice: calcTotalPrice(itemCopy),
+                }
+                addToLocalStorage(newState);
+
+                return newState
             }
 
         default:
