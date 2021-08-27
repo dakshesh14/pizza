@@ -74,6 +74,7 @@ const reducer = (state = initialState, action) => {
             let incCopy = [...state.items]
             let index = incCopy.findIndex(item => item.id === action.payload);
             incCopy[index] = {...incCopy[index], quantity: incCopy[index].quantity += 1 };
+            localStorage.setItem('cart', JSON.stringify(incCopy));
 
             return {
                 ...state,
@@ -84,6 +85,7 @@ const reducer = (state = initialState, action) => {
             let decCopy = [...state.items]
             let decIndex = decCopy.findIndex(item => item.id === action.payload);
             decCopy[index] = {...decCopy[decIndex], quantity: decCopy[decIndex].quantity -= 1 };
+            localStorage.setItem('cart', JSON.stringify(decCopy));
 
             return {
                 ...state,
