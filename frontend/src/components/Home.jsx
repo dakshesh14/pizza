@@ -4,6 +4,10 @@ import React, {
     useRef,
 } from 'react';
 
+import {
+    Link,
+} from 'react-router-dom';
+
 export default memo(function Home() {
 
     let heroTextContainer = useRef(null);
@@ -52,10 +56,10 @@ export default memo(function Home() {
                                     get the best pizza in the town
                                 </p>
                                 <div className="hero-cta">
-                                    <a href="#" className="button button-primary">
+                                    <Link className="button button-primary" to="/menu">
                                         Order Now
                                         <i className="fas fa-shopping-cart ms-2"></i>
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </section>

@@ -1,7 +1,8 @@
+// importing swal from popup animation
+import Swal from 'sweetalert2'
+
 import {
-    ADD_ITEM_TO_CART_START,
     ADD_ITEM_TO_CART_SUCCESS,
-    ADD_ITEM_TO_CART_FAIL,
     DELETE_ITEM_FROM_CART,
     CHECK_OLD_ITEMS,
     INCREMENT_ITEM,
@@ -33,16 +34,17 @@ const reducer = (state = initialState, action) => {
 
             return oldItem
 
-        case ADD_ITEM_TO_CART_START:
-            return {
-                ...state,
-                loading: true,
-            }
-
         case ADD_ITEM_TO_CART_SUCCESS:
             {
-                if (!state.items.some(item => item.id === action.payload.id)) {
-                    const newItemArray = [...state.items, action.payload];
+
+                let { item, total } = action.payload;
+                item = {
+                    ...item,
+                    price: total,
+                    quantity: 1,
+                }
+                if (!state.items.some(oldItem => oldItem.id === item.id)) {
+                    const newItemArray = [...state.items, item];
                     const newState = {
                         ...state,
                         error: null,
@@ -52,14 +54,11 @@ const reducer = (state = initialState, action) => {
                         totalPrice: calcTotalPrice(newItemArray),
                     }
                     addToLocalStorage(newState);
+                    Swal.fire("Item added to cart", item.name + ' has been added to your cart', 'success');
                     return newState
                 }
-            }
-
-        case ADD_ITEM_TO_CART_FAIL:
-            return {
-                ...state,
-                error: action.payload,
+                Swal.fire("Already on the cart", `Seems like you already have ${item.name} in your cart!`, 'question');
+                return state
             }
 
         case DELETE_ITEM_FROM_CART:

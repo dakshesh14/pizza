@@ -1,4 +1,5 @@
-import React, { memo } from 'react';
+import React, { memo, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 // importing cart related stuff
 import { deleteItemFromCart, increaseItem, decreaseItem } from '../store/cart/action';
@@ -6,6 +7,23 @@ import { connect } from 'react-redux';
 
 
 function UserCart({ cartItems, deleteItemFromCart, increaseItem, decreaseItem }) {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [])
+
+    if (cartItems.items.length === 0) {
+        return (
+            <div className="container">
+                <div className="row pt-5">
+                    <div className="col-12">
+                        <h2>Seems like you don't have any item in cart.</h2>
+                        <Link className="fancy-link" to="/menu">Continue Shopping</Link>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
     return (
         <section>
