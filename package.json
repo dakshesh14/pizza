@@ -39,6 +39,7 @@
   },
   "homepage": "https://github.com/Dakshesh14/pizza#readme",
   "dependencies": {
+    "redux-persist": "^6.0.0",
     "sweetalert2": "^11.1.4"
   }
 }

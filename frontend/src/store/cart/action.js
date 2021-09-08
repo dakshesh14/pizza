@@ -1,6 +1,5 @@
 import {
     ADD_ITEM_TO_CART_SUCCESS,
-    CHECK_OLD_ITEMS,
     DELETE_ITEM_FROM_CART,
     INCREMENT_ITEM,
     DECREMENT_ITEM,
@@ -10,11 +9,6 @@ import {
 export const addItemToCart = (payload) => ({
     type: ADD_ITEM_TO_CART_SUCCESS,
     payload
-})
-
-
-export const checkOldItems = () => ({
-    type: CHECK_OLD_ITEMS,
 })
 
 

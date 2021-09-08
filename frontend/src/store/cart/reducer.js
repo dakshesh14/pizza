@@ -27,13 +27,6 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
 
-        case CHECK_OLD_ITEMS:
-            let oldItem = localStorage.getItem('cart');
-            oldItem = JSON.parse(oldItem);
-            if (!oldItem) return state
-
-            return oldItem
-
         case ADD_ITEM_TO_CART_SUCCESS:
             {
 

@@ -6,10 +6,6 @@ import {
 } from 'react-router-dom';
 
 
-// importing redux related stuff
-import { connect } from 'react-redux';
-import { checkOldItems } from './store/cart/action'
-
 // importing components
 import Home from './components/Home';
 import Menu from './components/Menu';
@@ -19,11 +15,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 
-function App({ checkOldItems }) {
-
-    useEffect(() => {
-        checkOldItems();
-    }, [])
+function App() {
 
     return (
         <Router>
@@ -38,12 +30,4 @@ function App({ checkOldItems }) {
     )
 }
 
-const mapDispatchToProps = {
-    checkOldItems: () => checkOldItems(),
-}
-
-
-export default connect(
-    null,
-    mapDispatchToProps
-)(App);
+export default App
